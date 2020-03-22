@@ -1,0 +1,17 @@
+<suite name="Billing order suite" parallel="classes" thread-count="2" >
+    <test name="ChromeTest">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="tests.BillingOrderTests" />
+            <class name="tests.TestBlankFormPageTests" />
+        </classes>
+    </test>
+
+    <test name="FirefoxTest">
+        <parameter name="browser" value="firefox" />
+        <classes>
+            <class name="tests.BillingOrderTests" />
+            <class name="tests.TestBlankFormPageTests" />
+        </classes>
+    </test>
+</suite>
