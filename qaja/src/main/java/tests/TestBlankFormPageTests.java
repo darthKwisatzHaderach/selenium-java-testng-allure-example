@@ -1,5 +1,6 @@
 package tests;
 
+import com.automation.remarks.video.annotations.Video;
 import helpers.CsvReader;
 import models.Form;
 import org.testng.Assert;
@@ -24,6 +25,7 @@ public class TestBlankFormPageTests extends BaseTest {
                 .logIn("Testing");
     }
 
+    @Video
     @Test(description = "Submit form with all required parameters", dataProvider = "provideCorrectFormParameters")
     public void SubmitFormWithAllParametersTest(String firstName, String lastName, String email, String comment) throws Exception {
         var testBlankFormPage = new TestBlankFormPage(driver);
@@ -33,6 +35,7 @@ public class TestBlankFormPageTests extends BaseTest {
         Assert.assertTrue(testBlankFormPage.isSuccessMessageDisplayed(10));
     }
 
+    @Video
     @Test(description = "Submit form with all parameters from CSV file", dataProvider = "csvDataProvider")
     public void CsvExampleTest(String firstName, String lastName, String email, String comment) throws Exception {
         var form = new Form(firstName, lastName, email, comment);

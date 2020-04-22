@@ -5,8 +5,11 @@
  */
 package tests;
 
+import com.automation.remarks.testng.UniversalVideoListener;
 import extensions.WebDriverExtensions;
 import io.qameta.allure.Attachment;
+
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Reporter;
@@ -16,7 +19,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
 import java.io.IOException;
+import org.testng.annotations.Listeners;
 
+@Listeners(UniversalVideoListener.class)
 public class BaseTest {
     protected RemoteWebDriver driver = null;
 
@@ -50,11 +55,19 @@ public class BaseTest {
             cap = DesiredCapabilities.internetExplorer();
             cap.setBrowserName("internetExplorer");
         }
-
-        driver = new RemoteWebDriver(cap);
+     
+        // driver = new RemoteWebDriver(cap);
+        Local();
         driver.manage().window().maximize();
     }
 
+    
+    
+    public void Local(){
+        System.setProperty("webdriver.chrome.driver","C:\\driver\\1\\chromedriver.exe");
+        driver = new ChromeDriver();
+    }
+    
     @AfterMethod
     public void TearDown() {
         try {

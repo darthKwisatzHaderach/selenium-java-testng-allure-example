@@ -5,9 +5,8 @@
  */
 package tests;
 
-import com.opencsv.CSVReader;
+import com.automation.remarks.video.annotations.Video;
 import dictionaries.State;
-import helpers.CsvReader;
 import models.BillingOrder;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -15,11 +14,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.AuthorizationPage;
 import pages.BillingOrderPage;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class BillingOrderTests extends BaseTest {
 
@@ -32,6 +26,7 @@ public class BillingOrderTests extends BaseTest {
             .logIn("Testing");
     }
 
+    @Video
     @Test(description = "Submit billing order with all required parameters", dataProvider = "provideCorrectOrders")
     public void SubmitFormWithAllParametersTest(BillingOrder order) throws Exception {
         var billingOrderPage = new BillingOrderPage(driver);
@@ -41,6 +36,7 @@ public class BillingOrderTests extends BaseTest {
         Assert.assertTrue(billingOrderPage.isSuccessMessageDisplayed(10));
     }
 
+    @Video
     @Test(description = "Total amount visibility test")
     public void TotalAmountTest() {
         var billingOrderPage = new BillingOrderPage(driver);
@@ -65,6 +61,7 @@ public class BillingOrderTests extends BaseTest {
         Assert.assertTrue(result3, "Incorrect total amount for third item");
     }
 
+    @Video
     @Test(description = "Required fields validation test")
     public void RequiredFieldsTest() {
         var billingOrderPage = new BillingOrderPage(driver);
